@@ -1,0 +1,34 @@
+{
+    "name": "adityadarma/laravel-mazer",
+    "description": "Template Mazer for Laravel",
+    "homepage": "https://github.com/adityadarma/laravel-mazer",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aditya Darma",
+            "email": "adhit.boys1@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "AdityaDarma\\LaravelMazer\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "AdityaDarma\\LaravelMazer\\LaravelMazerServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true,
+        "preferred-install": "dist",
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "stable"
+}

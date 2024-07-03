@@ -1,0 +1,27 @@
+.layout-navbar footer {
+    position: fixed;
+    bottom: 0;
+}
+
+.logo img{
+    height: 90px !important;
+}
+
+.with-scrollbar {
+    max-height: 200px;
+    overflow-y: scroll;
+}
+
+.list-item:hover {
+    background-color: #e6e0e0;
+    opacity: 0.5;
+}
+
+#exampleModal {
+    z-index: 1062 !important;
+}
+
+#exampleModal.show:nth-of-type(even) {
+/* #exampleModal.modal-backdrop.show:nth-of-type(even) { */
+    z-index: 1061 !important;
+}

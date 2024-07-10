@@ -67,7 +67,7 @@
                     </ul>
                 </li> {{-- end of manage payroll menu --}}
 
-                <li class="sidebar-item has-sub">
+                <li class="sidebar-item has-sub {{ (request()->is('payroll/working-sites/*')) ? 'active' : '' }}">
                     <a href="#" class='sidebar-link {{ (request()->is('payroll/working-sites/*')) ? 'active' : '' }}'>
                         <i class="bi bi-buildings-fill"></i>
                         <span>Manage Working Site</span>
@@ -77,8 +77,8 @@
                         <li class="submenu-item {{ (request()->is('payroll/working-sites/working-sites-index')) ? 'active' : '' }} ">
                             <a href="{{ route('working.sites.index') }}" class="submenu-link">Sites</a>
                         </li>
-                        <li class="submenu-item  ">
-                            <a href="form-element-input-group.html" class="submenu-link">Site salary expenses</a>
+                        <li class="submenu-item  {{ (request()->is('payroll/working-sites/working-sites-salary-expenses-index')) ? 'active' : '' }}">
+                            <a href="{{ route('working.sites.salary.expenses.index') }}" class="submenu-link">Site salary expenses</a>
                         </li>
                     </ul>
                 </li> {{-- end of manage working site menu --}}

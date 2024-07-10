@@ -11,4 +11,9 @@ class WorkingSitesController extends Controller
     {
         return view('payroll.working-site-management.workingSiteIndex');
     }
+
+    public function salaryExpensesPersiteIndex()
+    {
+        return view('payroll.working-site-management.salaryExpensesPersiteIndex');
+    }
 }

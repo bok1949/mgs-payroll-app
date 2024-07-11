@@ -2,8 +2,10 @@
 
 namespace App\Models\Payroll;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Payroll\EmployeeTimeRecord;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class EmployeeInformation extends Model
 {
@@ -23,4 +25,12 @@ class EmployeeInformation extends Model
     ];
 
     public $table = 'employee_information';
+
+    /**
+     * get the days present from the employee time records
+     */
+    public function daysPresent(): HasMany
+    {
+        return $this->hasMany(EmployeeTimeRecord::class, 'employee_id');
+    }
 }

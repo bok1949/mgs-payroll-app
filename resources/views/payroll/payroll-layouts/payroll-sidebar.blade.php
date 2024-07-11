@@ -38,28 +38,28 @@
                     </ul>
                 </li> {{-- end of manage employee menu --}}
 
-                <li class="sidebar-item  has-sub">
+                <li class="sidebar-item  has-sub {{ (request()->is('payroll/time-record/*')) ? 'active' : '' }}">
                     <a href="#" class='sidebar-link'>
                         <i class="bi bi-calendar-fill"></i>
-                        <span>Manage Time Record</span>
+                        <span>Manage DTR</span>
                     </a>
 
-                    <ul class="submenu ">
-                        <li class="submenu-item  ">
-                            <a href="extra-component-avatar.html" class="submenu-link">Employee Time Record</a>
+                    <ul class="submenu {{ (request()->is('payroll/time-record/*')) ? 'active' : '' }}">
+                        <li class="submenu-item  {{ (request()->is('payroll/time-record/employee-time-record-index')) ? 'active' : '' }}">
+                            <a href="{{ route('employee-time-record-index') }}" class="submenu-link">Employee Time Record</a>
                         </li>
                     </ul>
                 </li> {{-- end of manage time record menu --}}
 
-                <li class="sidebar-item has-sub">
-                    <a href="#" class='sidebar-link'>
+                <li class="sidebar-item has-sub {{ (request()->is('payroll/manage-payroll/*')) ? 'active' : '' }}">
+                    <a href="#" class='sidebar-link {{ (request()->is('payroll/manage-payroll/*')) ? 'active' : '' }}'>
                         <i class="bi bi-wallet-fill"></i>
                         <span>Manage Payroll</span>
                     </a>
 
-                    <ul class="submenu">
-                        <li class="submenu-item  ">
-                            <a href="layout-default.html" class="submenu-link">Cash Advance</a>
+                    <ul class="submenu ">
+                        <li class="submenu-item  {{ (request()->is('payroll/manage-payroll/cash-advance')) ? 'active' : '' }}">
+                            <a href="{{route('cash.advance.index')}}" class="submenu-link">Cash Advance</a>
                         </li>
                         <li class="submenu-item  ">
                             <a href="layout-vertical-1-column.html" class="submenu-link">Payslip</a>

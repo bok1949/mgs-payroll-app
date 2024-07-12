@@ -11,19 +11,19 @@
         <div class="modal-dialog modal-fullscreen">
             <div class="modal-content">
                 <div class="modal-header alert-primary">
-                    <h5 class="modal-title">
+                    <h5 class="modal-title text-white">
                         Input Time Record of &nbsp;
                         @isset($employeesInfo)
                             @foreach ($employeesInfo as $key=>$item)
                                 @if ($key === 0)
-                                    {{Str::ucfirst(Str::lower($item->first_name))}} &nbsp;
-                                    {{Str::ucfirst(Str::lower($item->last_name))}}
+                                    {{Str::ucfirst(Str::lower($item->last_name))}}, 
+                                    {{Str::ucfirst(Str::lower($item->first_name))}}
                                     @break
                                 @endif
                             @endforeach
                         @endisset
                     </h5>
-                    <a href="{{route('employee-time-record-index')}}" type="button" class="btn-close" aria-label="Close"></a>
+                    <a href="{{route('employee-time-record-index')}}" type="button" class="btn-close btn-close-white" aria-label="Close"></a>
                 </div>
                 <div class="modal-body">
                     <div class="row my-2">

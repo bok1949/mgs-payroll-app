@@ -36,7 +36,7 @@
 <section class="section">
     <div class="row ">
         <div class="col-12 col-md-12">
-            {{-- @livewire('payroll.time-record-management.employee-time-record-index') --}}
+            @livewire('payroll.payroll-management.employee-cash-advance-index')
         </div>
     </div>
 </section>
@@ -55,5 +55,19 @@
 @endsection
 
 @section('custom_script')
-
+<script>
+    $(document).ready(function() {
+    
+        // Enable Bootstrap tooltips on page load
+        $('[data-bs-toggle="tooltip"]').tooltip();
+        
+        // Ensure Livewire updates re-instantiate tooltips
+        if (typeof window.Livewire !== 'undefined') {
+            window.Livewire.hook('message.processed', (message, component) => {
+                $('[data-bs-toggle="tooltip"]').tooltip('dispose').tooltip();
+            });
+        }
+    
+    });
+</script>
 @endsection

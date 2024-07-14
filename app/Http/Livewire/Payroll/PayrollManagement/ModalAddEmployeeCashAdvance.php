@@ -14,8 +14,8 @@ class ModalAddEmployeeCashAdvance extends Component
     ];
 
     protected $rules = [
-        'amount' => 'required|min:2|max:24',
-        'cash_advanced_date' => 'required|min:2|max:24',
+        'amount' => 'required|max:11',
+        'cash_advanced_date' => 'required',
         'purpose' => 'nullable',
     ];
 

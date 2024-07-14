@@ -42,6 +42,8 @@ Route::prefix('/payroll')->group(function() {
 
     Route::prefix('/manage-payroll')->group(function() {
         Route::get('/cash-advance', [ManagePayrollController::class, 'cashAdvanceIndex'])->name('cash.advance.index');
+        Route::get('/cash-advance/{employeeUuid}', [ManagePayrollController::class, 'viewEmployeeCashAdvancesIndex'])->name('view.cash.advances.index');
+        Route::get('/employee-payslip', [ManagePayrollController::class, 'employeePayslipIndex'])->name('employee.payslip.index');
     });
 
 });

@@ -66,7 +66,7 @@
                                     <span data-bs-toggle="tooltip" data-bs-placement="top" title="Add cash advance">
                                         <a 
                                             href="#"
-                                            wire:click.prevent="modalToAddEmployeeCashAdvance({{$employee->id}}, '{{$employee->first_name}}', '{{$employee->last_name}}')"
+                                            wire:click.stop="modalToAddEmployeeCashAdvance({{$employee->id}}, '{{$employee->first_name}}', '{{$employee->last_name}}')"
                                             data-bs-toggle="modal" 
                                             data-bs-target="#addCashAdvanced"
                                         >
@@ -75,14 +75,11 @@
                                     </span> 
                                     &nbsp; |
                                     &nbsp;
-                                    <a 
-                                        href="{{route('cash.advance.index', ['id'=>$employee->id])}}"
-                                        data-bs-toggle="tooltip" 
-                                        data-bs-placement="top" 
-                                        title="View all cash advances"
-                                    >
-                                        <i class="bi bi-eye"></i>
-                                    </a>
+                                    <span data-bs-toggle="tooltip" data-bs-placement="top" title="View cash advances">
+                                        <a href="{{route('view.cash.advances.index', ['employeeUuid' => $employee->employee_uuid])}}">
+                                            <i class="bi bi-eye"></i> 
+                                        </a>
+                                    </span>
                                 </div>
                             </td>
                         </tr>
@@ -106,6 +103,7 @@
             </div>
         </div>
     </div>
+
     @livewire('payroll.payroll-management.modal-add-employee-cash-advance')
 
 
@@ -122,17 +120,6 @@
         window.addEventListener('db-error', event => {
             alert(event.detail.errormessage);
         });
-
-       /*  window.addEventListener('tooltip', event => {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl)
-            });
-
-            alert('tooltip executed');
-        }); */
-
-        
 
     </script>
 

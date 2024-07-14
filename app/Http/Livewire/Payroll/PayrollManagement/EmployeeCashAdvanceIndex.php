@@ -36,11 +36,17 @@ class EmployeeCashAdvanceIndex extends Component
         $this->emit('showModalToAddEmployeeCashAdvance', $empId, $fname, $lname);
     }
 
+    public function modalToViewEmployeeCashAdvances($empId, $fname, $lname)
+    {
+        $this->emit('showModalToViewEmployeeCashAdvances', $empId, $fname, $lname);
+    }
+
     public function render()
     {
         $employees = EmployeeInformation::orderby('employee_information.last_name', 'asc')
         ->select(
             'employee_information.id',
+            'employee_information.employee_uuid',
             'employee_information.first_name',
             'employee_information.last_name'
         );

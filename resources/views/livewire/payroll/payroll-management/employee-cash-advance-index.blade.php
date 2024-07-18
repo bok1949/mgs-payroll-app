@@ -27,7 +27,11 @@
                 <div class="col-lg-12 col-md-12 col-sm-12">
                     <div class="form-group has-icon-left">
                         <div class="position-relative">
-                            <input type="text" class="form-control" placeholder="Employee name..." wire:model.debounce.3000="searchString">
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                placeholder="Employee name..." 
+                                wire:model.lazy="searchString">
                             <div class="form-control-icon">
                                 <i class="bi bi-search"></i>
                             </div>

@@ -46,7 +46,6 @@
                             <a 
                                 href="#" 
                                 wire:click="downLoadSummary" 
-                                wire:loading.attr="disabled"
                                 class="btn btn-primary"
                             >
                                 Download Site Salary Expenses

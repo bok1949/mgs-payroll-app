@@ -66,6 +66,7 @@ class ViewEmployeeCashAdvancesIndex extends Component
         ];
 
         if (!empty($data)) {
+            sleep(3);
             $fileName = $this->fullName . Carbon::now() . '.pdf';
             $pdfContent = PDF::loadView('payroll.payroll-management.cash-advance-download-pages.employeeCashAdvanceDownload', $data)->output();
 
@@ -79,7 +80,7 @@ class ViewEmployeeCashAdvancesIndex extends Component
     public function render()
     {
         $cashAdvances = EmployeeCashAdvance::where('employee_information_id', $this->empId)
-            ->orderBy('created_at');
+            ->orderBy('created_at', 'desc');
 
         if ($this->filterDateFrom && $this->filterDateTo) {
             $cashAdvances->where([

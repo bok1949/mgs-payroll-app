@@ -31,7 +31,7 @@
                     <button type="submit" wire:click="filterCashAdvanceByDate" class="btn btn-primary">Filter</button>
                 </div>
                 <div class="col-lg-2 col-md-2 col-sm-2">
-                    <a href="#" wire:click="clearFilter" class="btn btn-success">Clear filter</a>
+                    <a href="#" wire:click.prevent="clearFilter" class="btn btn-success">Clear filter</a>
                 </div>
             </div>
             
@@ -41,7 +41,12 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="table-responsive">
+                    {{-- create loading here while downloading --}}
+                    <div class="alert alert-info text-center col-md-12" wire:loading wire:target="downloadEmployeeCashAdvance">
+                        Processing Download...
+                    </div>
+
+                    <div class="table-responsive" wire:loading.remove>
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
@@ -57,20 +62,16 @@
                                 @foreach ($employeeCashAdvances as $index => $employeeCashAdvance)
                                     <tr wire:key="emp-field-{{ $employeeCashAdvance->id }}">
                                         <th scope="row">{{ $counter }}</th>
-                                        <td class="col-auto">
-                                            {{$employeeCashAdvance->amount}}
-                                        </td>
-                                        <td class="col-auto">
-                                            {{$employeeCashAdvance->purpose}}
-                                        </td>
+                                        <td class="col-auto">{{$employeeCashAdvance->amount}}</td>
+                                        <td class="col-auto">{{$employeeCashAdvance->purpose}}</td>
                                         <td class="col-auto">
                                             {{
-                                            \Carbon\Carbon::parse($employeeCashAdvance->cash_advanced_date)->toFormattedDateString()
+                                                \Carbon\Carbon::parse($employeeCashAdvance->cash_advanced_date)->toFormattedDateString()
                                             }}
                                         </td>
                                         <td class="col-auto">
                                             {{
-                                            \Carbon\Carbon::parse($employeeCashAdvance->created_at)->toFormattedDateString()
+                                                \Carbon\Carbon::parse($employeeCashAdvance->created_at)->toFormattedDateString()
                                             }}
                                         </td>
                                         <td class="col-auto">
@@ -105,7 +106,7 @@
                 </div>
             </div>
     
-            <div class="row my-3">
+            <div class="row my-3" wire:loading.remove>
                 <div class="col d-flex justify-content-start align-items-center">
                     Showing &nbsp;<strong>{{ $from }}</strong>
                     &nbsp;to&nbsp; <strong>{{ $to }}</strong>

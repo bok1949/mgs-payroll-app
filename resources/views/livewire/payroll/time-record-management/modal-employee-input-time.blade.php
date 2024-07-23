@@ -125,7 +125,7 @@
                                     @if ($siteId && $employee->working_site_id == $siteId)
                                         <input 
                                             type="number" 
-                                            wire:model.lazy="empDaysPresentInput"
+                                            wire:model.defer="empDaysPresentInput"
                                             value="{{$empDaysPresentInput ?? ''}}"
                                             class="form-control @error('empDaysPresentInput') is-invalid @enderror" 
                                         />
@@ -142,7 +142,7 @@
                                     @if ($siteId && $employee->working_site_id == $siteId)
                                         <input 
                                             type="number" 
-                                            wire:model="otInput" 
+                                            wire:model.defer="otInput" 
                                             value="{{$otInput ?? ''}}"
                                             class="form-control" 
                                         />
@@ -154,7 +154,7 @@
                                     @if ($siteId && $employee->working_site_id == $siteId)
                                         <input 
                                             type="date" 
-                                            wire:model.lazy="dateFromModalInput"
+                                            wire:model.defer="dateFromModalInput"
                                             value="{{$dateFromModalInput ?? ''}}"
                                             class="form-control @error('dateFromModalInput') is-invalid @enderror" 
                                         />
@@ -171,7 +171,7 @@
                                     @if ($siteId && $employee->working_site_id == $siteId)
                                         <input 
                                             type="date" 
-                                            wire:model="dateToModalInput"
+                                            wire:model.defer="dateToModalInput"
                                             value="{{$dateToModalInput ?? ''}}"
                                             class="form-control @error('dateToModalInput') is-invalid @enderror" 
                                         />

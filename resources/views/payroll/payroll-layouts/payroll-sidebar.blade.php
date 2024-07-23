@@ -61,8 +61,8 @@
                         <li class="submenu-item  {{ (request()->is('payroll/manage-payroll/cash-advance')) ? 'active' : '' }}">
                             <a href="{{route('cash.advance.index')}}" class="submenu-link">Cash Advance</a>
                         </li>
-                        <li class="submenu-item  ">
-                            <a href="layout-vertical-1-column.html" class="submenu-link">Payslip</a>
+                        <li class="submenu-item  {{ (request()->is('payroll/manage-payroll/employee-payslip')) ? 'active' : '' }}">
+                            <a href="{{route('employee.payslip.index')}}" class="submenu-link">Payslip</a>
                         </li>
                     </ul>
                 </li> {{-- end of manage payroll menu --}}

@@ -36,7 +36,7 @@
 <section class="section">
     <div class="row ">
         <div class="col-12 col-md-12">
-            {{-- @livewire('payroll.payroll-management.employee-cash-advance-index') --}}
+            @livewire('payroll.payroll-management.employee-payslip-list-index')
         </div>
     </div>
 </section>

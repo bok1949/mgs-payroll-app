@@ -5,8 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{{ public_path('new-assets/assets/css/bootstrap.css')}}">
-    <link rel="stylesheet" href="{{ public_path('new-assets/assets/css/pdfDownload.css')}}">
+
+    <link rel="stylesheet" href="{{ public_path('assets/css/pdfDownload.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 
 <body style="margin: auto;">
@@ -19,22 +21,7 @@
                     <span class="text-secondary"> || <i>Office Copy</i> </span>
                 </p>
                 <div class="border-top p-0 m-0 text-start">
-                    <p><strong>Date Generated:</strong> <span class="border-bottom">{{ Carbon\Carbon::now()->format('F
-                            j, Y') }}</span></p>
-                    {{-- <p>
-                        <strong>From:</strong>
-                        <span class="border-bottom"
-                            style="{{ $dateFrom === '' || $dateFrom === null ? 'color: red;' : '' }}">
-                            {{ $dateFrom === '' || $dateFrom === null ? 'Start date not set' : $dateFrom }}
-                        </span>
-                    </p>
-                    <p>
-                        <strong>To:</strong>
-                        <span class="border-bottom"
-                            style="{{ $dateTo === '' || $dateTo === null ? 'color: red;' : '' }}">
-                            {{ $dateTo === '' || $dateTo === null ? 'End date not set' : $dateTo }}
-                        </span>
-                    </p> --}}
+                    <p><strong>Date Generated:</strong> <span class="border-bottom">{{ Carbon\Carbon::now()->format('F j, Y') }}</span></p>
                 </div>
                 <div class="container-fluid m-0 p-0 col col-12 w-100">
                     <table class="table table-bordered col col-12 w-100 payslip-print-data">
@@ -75,10 +62,8 @@
                             <td class="border border-dark">{{ $emp_final_pay }} Php.</td>
                         </tr>
                     </table>
-
                 </div>
                 <div>
-                    {{-- Table start --}}
                     <table class="table">
                         <tbody>
                             <tr>
@@ -107,22 +92,7 @@
                     <span class="text-secondary"> || <i>Personal Copy</i> </span>
                 </p>
                 <div class="border-top p-0 m-0 text-start">
-                    <p><strong>Date Generated:</strong> <span class="border-bottom">{{ Carbon\Carbon::now()->format('F
-                            j, Y') }}</span></p>
-                    {{-- <p>
-                        <strong>From:</strong>
-                        <span class="border-bottom"
-                            style="{{ $dateFrom === '' || $dateFrom === null ? 'color: red;' : '' }}">
-                            {{ $dateFrom === '' || $dateFrom === null ? 'Start date not set' : $dateFrom }}
-                        </span>
-                    </p>
-                    <p>
-                        <strong>To:</strong>
-                        <span class="border-bottom"
-                            style="{{ $dateTo === '' || $dateTo === null ? 'color: red;' : '' }}">
-                            {{ $dateTo === '' || $dateTo === null ? 'End date not set' : $dateTo }}
-                        </span>
-                    </p> --}}
+                    <p><strong>Date Generated:</strong> <span class="border-bottom">{{ Carbon\Carbon::now()->format('F j, Y') }}</span></p>
                 </div>
                 <div class=" container-fluid m-0 p-0 col col-12 w-100">
                     <table class="table table-bordered col col-12 w-100 payslip-print-data">

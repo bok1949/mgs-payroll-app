@@ -41,7 +41,6 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    {{-- create loading here while downloading --}}
                     <div class="alert alert-info text-center col-md-12" wire:loading wire:target="downloadEmployeeCashAdvance">
                         Processing Download...
                     </div>

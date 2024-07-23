@@ -25,19 +25,6 @@
                     <a href="#" wire:click.prevent="clearFilter">Clear all</a>
                 </div>
             </div>
-    
-            @if ($monthFilter)
-            <div class="row my-1">
-                <div class="col">
-                    {{-- <a href="{{ route('download.payslip', ['monthFilter' => $monthFilter]) }}" class="btn btn-info float-end mx-4"> --}}
-                    <a href="" class="btn btn-info float-end mx-4 text-white">
-                        Download all employees salary for 
-                        {{\Carbon\Carbon::create($monthFilter)->format('F')}}
-                    </a>
-                    {{-- <label for="" class="float-end">Generate a summary of employee payslips</label> --}}
-                </div>
-            </div>
-            @endif
 
             <div class="row mb-1">
                 <div class="col-lg-12 col-md-12 col-sm-12">
@@ -67,7 +54,10 @@
             @endif
 
             <div class="table-responsive">
-                <table class="table table-hover table-striped">
+                <div class="alert alert-info text-center col-md-12" wire:loading wire:target="downloadEmployeePayroll">
+                    Processing Download...
+                </div>
+                <table class="table table-hover table-striped" wire:loading.remove>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -111,15 +101,22 @@
                                 {{number_format($employeeNetSalary[$employee->employee_id], 2)}}
                             </td>
                             <td class="col-auto">
-                                <a 
-                                    href="#" 
-                                    class="dropdown-item" 
+                                <span
                                     data-bs-toggle="tooltip" 
                                     data-bs-placement="top" 
-                                    title="Download payslip"
-                                    wire:click.stop="downloadEmployeePayroll()">
-                                    <i class="bi bi-download point"></i>
-                                </a>
+                                    title="{{ $monthFilter ? 'Download payslip':'Download disabled'}}">
+                                    <a 
+                                        href="#" 
+                                        class="dropdown-item {{ $monthFilter ? '':' disabled'}}" 
+                                        wire:click.stop="downloadEmployeePayroll(
+                                        {{$employee->employee_id}},
+                                        '{{$employee->sumOfDaysPresent}}',
+                                        '{{$employee->sumOfOverTime}}',
+                                        '{{$employee->cashAdvanceSum}}'
+                                        )">
+                                        <i class="bi bi-download point"></i>
+                                    </a>
+                                </span>
                             </td>
                         </tr>
                             @php

@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\Payroll\PayrollManagement;
 
-use App\Models\Payroll\EmployeeCashAdvance;
 use Livewire\Component;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Livewire\WithPagination;
 use Illuminate\Support\Carbon;
 use App\Models\Payroll\WorkingSite;
-use App\Models\Payroll\EmployeeInformation;
 use App\Models\Payroll\EmployeeTimeRecord;
+use App\Models\Payroll\EmployeeCashAdvance;
+use App\Models\Payroll\EmployeeInformation;
 use App\Models\Payroll\EmployeeWorkingSite;
-use Livewire\WithPagination;
 
 class EmployeePayslipListIndex extends Component
 {
@@ -39,9 +40,58 @@ class EmployeePayslipListIndex extends Component
         );
     }
 
-    public function downloadEmployeePayroll($empId)
+    public function downloadEmployeePayroll($empId, $totalDays, $totalOT, $totalCashAdvance)
     {
+        $month = Carbon::create($this->monthFilter)->format('F');
+        $employee = EmployeeInformation::where('id', $empId)
+            ->select('first_name', 'last_name')->first();
+        $fullName = $employee->first_name . ' ' . $employee->last_name;
+        
+        $employeeWorkingSites = EmployeeWorkingSite::where('employee_information_id', $empId)
+            ->join('working_sites', 'working_sites.id', '=', 'employee_working_sites.working_site_id')
+            ->select(
+                'employee_working_sites.job_title',
+                'employee_working_sites.job_title_rate',
+                'working_sites.site_name',
+            )
+            ->get();
 
+        $jobTitleStr = "";
+        $jobRateStr = "";
+        $siteStr = "";
+        foreach ($employeeWorkingSites as $employeeWorkingSite) {
+            $jobTitleStr .= $employeeWorkingSite->job_title . ',' ?? '';
+            $jobRateStr .= $employeeWorkingSite->job_title_rate . ',' ?? '';
+            $siteStr .= $employeeWorkingSite->site_name . ',' ?? '';
+        }
+
+        $jobTitleStr = rtrim($jobTitleStr, ',');
+        $jobRateStr = rtrim($jobRateStr, ',');
+        $siteStr = rtrim($siteStr, ',');
+
+        $data = [
+            'emp_name' => $fullName,
+            'emp_job_title' => $jobTitleStr,
+            'emp_rate' => $jobRateStr,
+            'emp_site' => $siteStr,
+            'monthFilter' => $month,
+            'emp_days' => $totalDays,
+            'emp_total_ot' => $totalOT,
+            'emp_gross_total' => $this->employeeGrossSalary[$empId],
+            'emp_deductions' => $totalCashAdvance,
+            'emp_final_pay' => $this->employeeNetSalary[$empId],
+        ];
+
+        if (!empty($data)) {
+            sleep(3);
+            $fileName = $fullName . Carbon::now() . '.pdf';
+            $pdfContent = PDF::loadView('payroll.payroll-management.payslip-download-pages.download-single-payslip', $data)->output();
+
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                $fileName
+            );
+        }
     }
     
     public function render()

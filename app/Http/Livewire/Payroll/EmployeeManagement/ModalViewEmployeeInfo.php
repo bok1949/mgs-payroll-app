@@ -15,6 +15,7 @@ class ModalViewEmployeeInfo extends Component
     public $first_name, $middle_name, $last_name;
     public $address, $contact_number, $employment_date;
     public $employeeSiteInfo, $employeeId;
+    public $counter = 1;
 
     public function showModalToViewEmployeeInformation($empId)
     {
@@ -43,8 +44,6 @@ class ModalViewEmployeeInfo extends Component
         $this->contact_number = $employeeInformation->contact_number;
         $this->employment_date = $employeeInformation->employment_date;
 
-        
-        // dump($this->employeeSiteInfo);
     }
 
     public function render()

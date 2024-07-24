@@ -62,13 +62,25 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Assigned to</th>
                                         <th scope="col">Job title</th>
                                         <th scope="col">Rate</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @if ($employeeSiteInfo || empty($employeeSiteInfo) || is_null($employeeSiteInfo))
+                                    @if (!is_null($employeeSiteInfo))
+                                    @forelse ($employeeSiteInfo as $item)
+                                        <tr>
+                                            <td>{{$counter}}</td>
+                                            <td>{{$item->site_name ?? 'not set'}}</td>
+                                            <td>{{$item->job_title ?? 'not set'}}</td>
+                                            <td>{{$item->job_title_rate ?? 'not set'}}</td>
+                                        </tr>
+                                        @php
+                                            $counter++;
+                                        @endphp
+                                    @empty
                                         <tr>
                                             <td colspan="3">
                                                 <div class="alert alert-warning text-center" role="alert">
@@ -76,14 +88,7 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                    @else
-                                        @foreach ($employeeSiteInfo as $item)
-                                            <tr>
-                                                <td>{{$item->site_name ?? 'not set'}}</td>
-                                                <td>{{$item->job_title ?? 'not set'}}</td>
-                                                <td>{{$item->job_title_rate ?? 'not set'}}</td>
-                                            </tr>
-                                        @endforeach
+                                    @endforelse
                                     @endif
                                 </tbody>
                             </table>

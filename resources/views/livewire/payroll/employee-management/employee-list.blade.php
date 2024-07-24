@@ -70,17 +70,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $total = $employees->total();
-                                    $currentPage = $employees->currentPage();
-                                    $perPage = $employees->perPage();
-                                    
-                                    $from = ($currentPage - 1) * $perPage + 1;
-                                    $to = min($currentPage * $perPage, $total);
-                                    
-                                    $counter = $from;
-                                @endphp
-
                                 @forelse ($employees as $employee)
                                     <tr>
                                         <th scope="row">{{ $counter }}</th>

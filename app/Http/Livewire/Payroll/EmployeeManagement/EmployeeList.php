@@ -17,6 +17,7 @@ class EmployeeList extends Component
     public $searchString = '',
         $workingSiteFilter = '',
         $workingSiteName;
+    public $from, $to, $total, $counter;
 
     public function reRenderParent()
     {
@@ -44,7 +45,7 @@ class EmployeeList extends Component
 
     public function render()
     {
-        $employees = EmployeeInformation::orderBy('employee_information.first_name', 'asc')
+        $employees = EmployeeInformation::orderBy('employee_information.last_name', 'asc')
             ->select(
                 'employee_information.id AS employee_id', 
                 'employee_information.gender',
@@ -70,6 +71,14 @@ class EmployeeList extends Component
         $employees = $employees->paginate(25);
         $workingSiteNameCardHeader = $this->workingSiteName ?? 'All Employees';
 
+        $this->total = $employees->total();
+        $currentPage = $employees->currentPage();
+        $perPage = $employees->perPage();
+
+        $this->from = ($currentPage - 1) * $perPage + 1;
+        $this->to = min($currentPage * $perPage, $this->total);
+
+        $this->counter = $this->from;
 
         return view('livewire.payroll.employee-management.employee-list', compact(
             'employees',

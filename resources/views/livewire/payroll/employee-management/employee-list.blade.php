@@ -46,7 +46,13 @@
                 <div class="col-xl-3 col-md-3 col-sm-12">
                     <div class="form-group has-icon-right">
                         <div class="position-relative">
-                            <button type="submit" class="btn btn-primary form-control">Add Employee</button>
+                            <button 
+                                type="submit" 
+                                class="btn btn-primary form-control"
+                                data-bs-toggle="modal"
+                                data-bs-target="#modalCreateEmployee">
+                                Add Employee
+                            </button>
                             <div class="form-control-icon">
                                 <i class="bi bi-plus-circle"></i>
                             </div>
@@ -179,4 +185,33 @@
     </div>
     @livewire('payroll.employee-management.modal-update-employee-info')
     @livewire('payroll.employee-management.modal-view-employee-info')
+    @livewire('payroll.employee-management.modal-create-employee')
+
+    <script>
+        window.addEventListener('site-deleted', event => {
+            Toastify({
+                text: event.detail.deleteMessage,
+                duration: 5000,
+                close:true,
+                gravity:"top",
+                position: "center",
+                style: {
+                    background: "#198754"
+                }
+            }).showToast();
+        });
+    
+        window.addEventListener('success-message', event => {
+            window.setTimeout(function() {
+                $(".alert-success-message").fadeTo(1000, 0).slideUp(1000, function(){
+                    $(this).remove();
+                });
+            }, 5000);
+        });
+
+        window.addEventListener('db-error', event => {
+            alert(event.detail.errormessage);
+        });
+            
+    </script>
 </div>

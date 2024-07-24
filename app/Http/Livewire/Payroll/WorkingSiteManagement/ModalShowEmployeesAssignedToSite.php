@@ -69,8 +69,6 @@ class ModalShowEmployeesAssignedToSite extends Component
     
             $this->cancelCellEditing();
         } catch (\Throwable $th) {
-            //throw $th;
-            dump($th);
             $this->dispatchBrowserEvent('db-update-error', ['errormessage' => 'Something went wrong! ' . $th]);
         }
     }

@@ -55,5 +55,19 @@
 @endsection
 
 @section('custom_script')
-
+<script>
+    $(document).ready(function() {
+    
+        // Enable Bootstrap tooltips on page load
+        $('[data-bs-toggle="tooltip"]').tooltip();
+        
+        // Ensure Livewire updates re-instantiate tooltips
+        if (typeof window.Livewire !== 'undefined') {
+            window.Livewire.hook('message.processed', (message, component) => {
+                $('[data-bs-toggle="tooltip"]').tooltip('dispose').tooltip();
+            });
+        }
+    
+    });
+</script>
 @endsection

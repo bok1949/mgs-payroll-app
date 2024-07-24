@@ -188,19 +188,6 @@
     @livewire('payroll.employee-management.modal-create-employee')
 
     <script>
-        window.addEventListener('site-deleted', event => {
-            Toastify({
-                text: event.detail.deleteMessage,
-                duration: 5000,
-                close:true,
-                gravity:"top",
-                position: "center",
-                style: {
-                    background: "#198754"
-                }
-            }).showToast();
-        });
-    
         window.addEventListener('success-message', event => {
             window.setTimeout(function() {
                 $(".alert-success-message").fadeTo(1000, 0).slideUp(1000, function(){

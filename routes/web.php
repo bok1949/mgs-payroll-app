@@ -18,10 +18,6 @@ use App\Http\Controllers\Payroll\EmployeeTimeRecordController;
 |
 */
 
-/* Route::get('/', function () {
-    return view('example');
-}); */
-
 Route::prefix('/payroll')->group(function() {
     Route::get('/', [PayrollDashBoardController::class, 'payrollDashboard'])->name('payroll-dashboard');
 

@@ -27,7 +27,7 @@
                                 data-bs-toggle="tooltip" 
                                 data-bs-placement="top"
                                 title="i.e. (Last name, First name, or both)"
-                                wire:model.debounce.3000="searchString"
+                                wire:model.lazy="searchString"
                             >
                             <div class="form-control-icon">
                                 <i class="bi bi-search"></i>

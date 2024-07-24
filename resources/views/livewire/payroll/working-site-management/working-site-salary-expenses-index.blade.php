@@ -21,7 +21,7 @@
                                 type="text" 
                                 class="form-control" 
                                 placeholder="Site name..." 
-                                wire:model.debounce.3000="searchString">
+                                wire:model.lazy="searchString">
                             <div class="form-control-icon">
                                 <i class="bi bi-search"></i>
                             </div>

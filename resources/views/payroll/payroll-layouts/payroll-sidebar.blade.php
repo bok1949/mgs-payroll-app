@@ -82,18 +82,6 @@
                         </li>
                     </ul>
                 </li> {{-- end of manage working site menu --}}
-
-                <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
-                        <i class="bi bi-database-fill"></i>
-                        <span>Backup</span>
-                    </a>
-                    <ul class="submenu ">
-                        <li class="submenu-item  ">
-                            <a href="form-validation-parsley.html" class="submenu-link">Backup DB</a>
-                        </li>
-                    </ul>
-                </li> {{-- end of backup menu --}}
             </ul>
         </div>
     </div>

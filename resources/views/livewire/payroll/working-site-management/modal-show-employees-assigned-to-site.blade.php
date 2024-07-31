@@ -4,6 +4,8 @@
         class="modal fade" 
         id="showEmployeesAssignedToSite" 
         tabindex="-1" 
+        data-bs-backdrop="static" 
+        data-bs-keyboard="false"
         aria-labelledby="showEmployeesAssignedToSite"
         aria-hidden="true">
         <div class="modal-dialog modal-lg">

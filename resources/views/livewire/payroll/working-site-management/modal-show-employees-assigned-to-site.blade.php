@@ -60,7 +60,7 @@
                                             $counter = $from;
                                         @endphp
                                         @foreach ($siteEmployees as $employee)
-                                            <tr>
+                                            <tr wire:key="emp-field-{{ $employee->employee_information_id }}">
                                                 <td class="col-auto">
                                                     {{ $counter }}
                                                 </td>
@@ -78,8 +78,8 @@
                                                         role="button" class="d-flex align-items-center">
                                                         @if (
                                                             !empty($jobTitleColumn) && 
-                                                            $jobTitleColumn === $jobTitleColumnConstant && 
-                                                            $employee->employee_information_id === $employeeId
+                                                            $jobTitleColumn == $jobTitleColumnConstant && 
+                                                            $employee->employee_information_id == $employeeId
                                                         )
                                                             <input 
                                                                 type="text" 
@@ -100,8 +100,8 @@
                                                     >
                                                         @if (
                                                             !empty($jobTitleRateColumn) &&
-                                                            $jobTitleRateColumn === $jobTitleRateColumnConstant &&
-                                                            $employee->employee_information_id === $employeeId
+                                                            $jobTitleRateColumn == $jobTitleRateColumnConstant &&
+                                                            $employee->employee_information_id == $employeeId
                                                         )
                                                             <input 
                                                                 type="text" 

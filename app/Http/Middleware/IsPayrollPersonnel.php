@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsPayrollPersonnel
@@ -16,7 +17,8 @@ class IsPayrollPersonnel
     public function handle(Request $request, Closure $next): Response
     {
         if (!Auth()->check() || !Auth()->user()->isPayrollPersonnel(Auth()->user()::PERMISSION_CODE)) {
-            abort(403);
+            Auth::logout();
+            abort(403, "You are not allowed to view this resources!");
         }
 
         return $next($request);

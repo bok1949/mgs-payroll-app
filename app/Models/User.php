@@ -66,9 +66,9 @@ class User extends Authenticatable
         return $this->roles->contains('role_code', $roleCode);
     }
 
-    public function userRole(?string $roleCode = null): string
+    public function userRole(): string
     {
-        return $this->roles->where('role_code', $roleCode)->first()->role_description;
+        return $this->roles->where('role_code', self::PERMISSION_CODE)->first()->role_description;
     }
 
     public function getFirstName(): string
@@ -84,5 +84,20 @@ class User extends Authenticatable
     public function getUserFullName(): string
     {
         return "{$this->getFirstName()} {$this->getLastName()}";
+    }
+
+    public function getUserMobile(): mixed
+    {
+        return $this->mobile;
+    }
+
+    public function getUserEmail(): string
+    {
+        return $this->email;
+    }
+
+    public function getUserUserName(): string
+    {
+        return $this->username;
     }
 }

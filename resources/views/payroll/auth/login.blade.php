@@ -81,8 +81,8 @@
                                 </div>
                             </div>
                         </form>
-                        <div class="">
-                            <p><a class="" href="#">Forgot password?</a>.</p>
+                        <div class="text-sm text-end">
+                            <p><a class="fw-bold text-muted" href="#">Forgot password?</a>.</p>
                         </div>
                     </div>
 

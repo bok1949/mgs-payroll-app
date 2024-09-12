@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Payroll\AuthController;
 use App\Http\Controllers\Payroll\EmployeeController;
+use App\Http\Controllers\Payroll\UserAccountController;
 use App\Http\Controllers\Payroll\WorkingSitesController;
 use App\Http\Controllers\Payroll\ManagePayrollController;
 use App\Http\Controllers\Payroll\PayrollDashBoardController;
@@ -51,8 +52,14 @@ Route::prefix('/payroll')->group(function() {
             Route::get('/cash-advance/{employeeUuid}', [ManagePayrollController::class, 'viewEmployeeCashAdvancesIndex'])->name('view.cash.advances.index');
             Route::get('/employee-payslip', [ManagePayrollController::class, 'employeePayslipIndex'])->name('employee.payslip.index');
         });
-    });
 
+        Route::prefix('/user')->group(function() {
+            Route::get('/profile', [UserAccountController::class, 'userAccountProfile'])->name('account.profile');
+            Route::post('/profile-update', [UserAccountController::class, 'postUserAccountProfile'])->name('post.accountProfile');
+            Route::get('/settings', [UserAccountController::class, 'userAccountSettings'])->name('account.settings');
+        });
+
+    });
 
 });
 

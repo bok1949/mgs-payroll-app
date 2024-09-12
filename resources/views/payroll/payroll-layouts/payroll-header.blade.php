@@ -20,7 +20,7 @@
                                     {{ Auth::user()->getUserFullName() }}
                                 </h6>
                                 <p class="mb-0 text-sm text-gray-600">
-                                    {{ Auth::user()->userRole(Auth::user()::PERMISSION_CODE) }}
+                                    {{ Auth::user()->userRole() }}
                                 </p>
                             </div>
                             
@@ -34,13 +34,13 @@
                             </h6>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('account.profile') }}">
                                 <i class="icon-mid bi bi-person me-2"></i> My
                                 Profile
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{{ route('account.settings') }}">
                                 <i class="icon-mid bi bi-gear me-2"></i>
                                 Account Settings
                             </a>

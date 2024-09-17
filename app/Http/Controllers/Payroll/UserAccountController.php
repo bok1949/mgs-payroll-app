@@ -8,7 +8,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Validator;
 
 
 class UserAccountController extends Controller
@@ -44,4 +46,43 @@ class UserAccountController extends Controller
         
         return redirect()->route('account.profile')->with('success', 'Updated successfully!');
     }
+
+    public function postUserAccountSettingsChangePassword(Request $request): RedirectResPonse
+    {
+        $auth = Auth::user();        
+        /** Check current password matches */
+        if (!Hash::check($request->input('current_password'), $auth->password)) {
+            return redirect()->back()->withInput()->with('errorPasswordNotMatch', 'Current password does not match with the old password!');
+        }
+        
+        /** current password and new password are the same */
+        if (strcmp($request->input('current_password'), $request->input('password'))  == 0) {
+            return redirect()->back()->withInput()->with("errorCurrentAndNewAreSame", "New Password cannot be same as your current password.");
+        }
+
+        $validatedData = Validator::make($request->all(), [
+            'current_password' => ['required', 'string'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'password_confirmation' => ['required']
+        ]);
+                
+        if ($validatedData->fails()) {
+            return redirect()->back()->withErrors($validatedData)->withInput();
+        }
+
+        try {
+             # update user password
+            User::findOrFail($auth->id)->update([
+                'password' => Hash::make($request->password),
+                'updated_at' => Carbon::now(),
+            ]);
+            Auth::logout();
+
+            return redirect()->route('login')->with('success', 'Password updated successfully!');
+        } catch (\Throwable $th) {
+            //throw $th;
+            return redirect()->back()->with('error', 'Something went wrong!');
+        }
+    }
+
 }

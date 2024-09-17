@@ -57,6 +57,7 @@ Route::prefix('/payroll')->group(function() {
             Route::get('/profile', [UserAccountController::class, 'userAccountProfile'])->name('account.profile');
             Route::post('/profile-update', [UserAccountController::class, 'postUserAccountProfile'])->name('post.accountProfile');
             Route::get('/settings', [UserAccountController::class, 'userAccountSettings'])->name('account.settings');
+            Route::post('/settings-new-password', [UserAccountController::class, 'postUserAccountSettingsChangePassword'])->name('account.settings.saveNewPassword');
         });
 
     });

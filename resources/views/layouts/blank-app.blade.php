@@ -14,6 +14,7 @@
     <!-- General CSS Files -->
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
+    <script src="{{ asset('assets/vendor/sweetalert2/sweetalert2.all.min.js') }}"></script>
 
     <!-- CSS Libraries -->
     @yield('library_style')
@@ -44,8 +45,25 @@
 
     <!-- Page Specific JS File -->
     <script src="{{ asset('assets/js/default.js') }}"></script>
+    
+    <script>
+        $(document).ready(function() {
+        
+            // Enable Bootstrap tooltips on page load
+            $('[data-bs-toggle="tooltip"]').tooltip();
+            
+            // Ensure Livewire updates re-instantiate tooltips
+            /* if (typeof window.Livewire !== 'undefined') {
+                window.Livewire.hook('message.processed', (message, component) => {
+                    $('[data-bs-toggle="tooltip"]').tooltip('dispose').tooltip();
+                });
+            } */
+        
+        });
+    </script>
+        
     @yield('custom_script')
-
+        
 </body>
 
 </html>

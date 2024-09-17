@@ -36,6 +36,15 @@
                         {{ Session::get('errorMessage') }}
                     </div>
                     @endIf
+
+                    @if(Session::has('success'))
+                    <div class="alert alert-light-success color-success alert-dismissible show fade mb-2 text-center" role="alert">
+                        <i class="bi bi-check-circle float-start"></i>
+                        {{ Session::get('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endIf
+
                     <div class="card-body">
                         <form action="{{ route('post.login') }}" method="POST" class="form">
                             @csrf
@@ -82,7 +91,7 @@
                             </div>
                         </form>
                         <div class="text-sm text-end">
-                            <p><a class="fw-bold text-muted" href="#">Forgot password?</a>.</p>
+                            <p><a class="fw-bold text-muted text-decoration-underline" href="#">Forgot password?</a>.</p>
                         </div>
                     </div>
 
